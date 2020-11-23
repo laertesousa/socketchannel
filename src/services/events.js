@@ -4,8 +4,8 @@ const sendMessage = (channel, data) => {
   if (!channel || !data) {
     throw new Error('Channel and data is required');
   }
-
-  getInstance().emit(channel, data);
+  console.log('send message', channel, data);
+  getInstance().to(channel).emit('new-order', data);
 };
 
 module.exports = {
