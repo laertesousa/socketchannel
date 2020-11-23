@@ -1,4 +1,9 @@
-const { createNewEvent } = require('./service');
+const { getEvents, createNewEvent } = require('./service');
+
+const get = async (req, res) => {
+  const events = await getEvents();
+  res.json(events);
+};
 
 const post = async (req, res) => {
   const { channelName, data } = req.body.event;
@@ -7,5 +12,6 @@ const post = async (req, res) => {
 };
 
 module.exports = {
+  get,
   post
 };

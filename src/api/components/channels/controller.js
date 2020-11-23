@@ -1,4 +1,9 @@
-const { createNewChannel, sendMessage } = require('./service');
+const { getChannels, createNewChannel, sendMessage } = require('./service');
+
+const get = async (req, res) => {
+  const channels = await getChannels();
+  res.json(channels);
+};
 
 const post = async (req, res) => {
   const { name, url, accessToken } = req.body.channel;
@@ -14,6 +19,7 @@ const handleSendMessagePost = (req, res) => {
 };
 
 module.exports = {
+  get,
   post,
   handleSendMessagePost
 };
