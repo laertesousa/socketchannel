@@ -5,9 +5,9 @@ const { channelSchema } = require('../channels/models');
 const { receivedStatus, sentStatus } = require('./constants');
 
 const eventSchema = new Schema({
+  channel: channelSchema,
   status: { type: String, enum: [receivedStatus, sentStatus], default: receivedStatus },
   data: Map,
-  channel: channelSchema,
   receivedDate: { type: Date, default: Date.now },
   sentDate: Date
 });

@@ -31,8 +31,8 @@ curl --location --request POST 'http://localhost:3000/events' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "event": {
-        "data": { "shouldUpdate": true },
-        "channelName": "test"
+        "channelName": "test",
+        "data": { "shouldUpdate": true }
     }
 }'
 ```
