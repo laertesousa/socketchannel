@@ -9,7 +9,7 @@ const setupEventPoller = () => {
 
     for (const channelId of channelIds) {
       const channel = await Channel.findById(channelId).exec();
-      const events = await Event.find({ status: receivedStatus, channel: channelId }).exec();
+      const events = await Event.find({ status: receivedStatus, channel: channelId }).sort('receivedDate').exec();
       const successIds = [];
 
       for (const event of events) {
