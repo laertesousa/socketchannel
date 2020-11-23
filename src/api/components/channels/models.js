@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const channelSchema = new Schema({
-  name: String,
+  name: { type: String, unique: true, index: true },
   url: String,
   accessToken: String,
   createdDate: { type: Date, default: Date.now }
