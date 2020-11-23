@@ -1,4 +1,4 @@
-const { getRooms, create, sendMessage } = require('./service');
+const { getRooms, create } = require('./service');
 
 const get = async (req, res) => {
   const rooms = await getRooms();
