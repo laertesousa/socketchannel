@@ -1,14 +1,24 @@
-const { getEvents, createNewEvent } = require('./service');
+const { getEvents, create } = require('./service');
 
 const get = async (req, res) => {
-  const events = await getEvents();
-  res.json(events);
+  try {
+    const events = await getEvents();
+    res.json(events);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json();
+  }
 };
 
 const post = async (req, res) => {
-  const { channelName, data } = req.body.event;
-  const event = await createNewEvent(channelName, data);
-  res.json(event);
+  const { roomName, channel, data } = req.body;
+  try {
+    const event = await create(roomName, channel, data);
+    res.json(event);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json();
+  }
 };
 
 module.exports = {

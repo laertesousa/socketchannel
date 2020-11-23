@@ -1,5 +1,5 @@
 const io = require('socket.io');
-const channelsService = require('../components/channels/service');
+const roomsService = require('../components/rooms/service');
 
 let _instance = null;
 
@@ -9,11 +9,14 @@ const getInstance = () => {
 
 const handleConnection = async socket => {
   socket.on('disconnect', handleDisconnect);
-  const { channel: channelName, accessToken } = socket.handshake.query;
-  const channel = await channelsService.getChannel(channelName, accessToken);
+  const { room: roomName, accessToken } = socket.handshake.query;
+  const room = await roomsService.getByName(roomName, accessToken);
 
-  if (channel) {
-    socket.join(channel.name);
+  if (room) {
+    console.log(`${socket.id} joined room ${room.name}`);
+    socket.join(room.name);
+  } else {
+    console.warn(`${roomName} does not exist.`);
   }
 };
 

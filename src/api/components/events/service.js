@@ -1,15 +1,15 @@
 const { Event } = require('./models');
-const { Channel } = require('../channels/models');
+const { Room } = require('../rooms/models');
 
 const getEvents = async () =>
   await Event.find().exec()
 
-const createNewEvent = async (channelName, data) => {
-  const channel = await Channel.findOne({ name: channelName }).exec();
-  return await Event.create({ channel: channel._id, data });
+const create = async (name, channel, data) => {
+  const room = await Room.findOne({ name }).exec();
+  return await Event.create({ room: room._id, channel, data });
 };
 
 module.exports = {
   getEvents,
-  createNewEvent
+  create
 };

@@ -1,11 +1,11 @@
 const { getInstance } = require('../api/middleware/socketio');
 
-const sendMessage = (channel, data) => {
-  if (!channel || !data) {
-    throw new Error('Channel and data is required');
+const sendMessage = (room, channel, data) => {
+  if (!room || !channel || !data) {
+    throw new Error('room, channel and data is required');
   }
-  console.log('send message', channel, data);
-  getInstance().to(channel).emit('new-order', data);
+  console.log('send message', room, channel, data);
+  getInstance().to(room).emit(channel, data);
 };
 
 module.exports = {
