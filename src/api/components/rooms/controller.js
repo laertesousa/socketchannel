@@ -1,4 +1,9 @@
-const { create, sendMessage } = require('./service');
+const { getRooms, create, sendMessage } = require('./service');
+
+const get = async (req, res) => {
+  const rooms = await getRooms();
+  res.json(rooms);
+};
 
 const post = async (req, res) => {
   const { name, url, accessToken } = req.body;
@@ -12,5 +17,6 @@ const post = async (req, res) => {
 };
 
 module.exports = {
+  get,
   post
 };
