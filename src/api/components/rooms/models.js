@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const channelSchema = new Schema({
+const roomSchema = new Schema({
   name: { type: String, unique: true, index: true },
-  url: String,
   accessToken: String,
   createdDate: { type: Date, default: Date.now }
 });
 
-const Channel = mongoose.model('Channel', channelSchema);
+const Room = mongoose.model('Room', roomSchema);
 
 module.exports = {
-  channelSchema,
-  Channel
+  roomSchema,
+  Room
 };

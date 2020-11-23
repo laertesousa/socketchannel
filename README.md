@@ -13,14 +13,11 @@
 ### Create Channel
 
 ``` Bash
-curl --location --request POST 'http://localhost:3000/channels' \
+curl --location --request POST 'http://localhost:3000/rooms' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "channel": {
-        "name": "test",
-        "url": "https://www.test.com",
-        "accessToken": "12345abc"
-    }
+    "name": "live-orders-1545",
+    "accessToken": "1"
 }'
 ```
 
@@ -30,9 +27,8 @@ curl --location --request POST 'http://localhost:3000/channels' \
 curl --location --request POST 'http://localhost:3000/events' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "event": {
-        "channelName": "test",
-        "data": { "shouldUpdate": true }
-    }
+    "roomName": "live-orders-1545",
+    "channel": "new-orders",
+    "data": { "shouldUpdate": true }
 }'
 ```
