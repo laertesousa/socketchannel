@@ -1,5 +1,6 @@
 const path = require('path');
 const channelsRoutes = require('./components/channels/routes');
+const eventsRoutes = require('./components/events/routes');
 
 const pageRoutes = app => {
   app.get('/', (req, res) => {
@@ -9,6 +10,7 @@ const pageRoutes = app => {
 
 const setupRoutes = app => {
   channelsRoutes(app);
+  eventsRoutes(app);
   pageRoutes(app);
 };
 
