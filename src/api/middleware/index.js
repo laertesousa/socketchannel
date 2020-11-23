@@ -3,10 +3,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const setupDatabase = require('./database');
+const setupEventPoller = require('./setupEventPoller');
 const { init } = require('./socketio');
 
 const setupMiddleware = (app, http) => {
-  setupDatabase();
+  setupDatabase(setupEventPoller);
   init(http);
   app.use(logger('dev'));
   app.use(express.json());

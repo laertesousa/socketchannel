@@ -4,7 +4,7 @@ const dbBaseUrl = process.env.DB_URL;
 const username = process.env.DB_USER;
 const password = process.env.DB_PASS;
 
-const setupDatabase = () => {
+const setupDatabase = onConnected => {
   console.log(`mongodb://${username}:${password}@${dbBaseUrl}`);
   mongoose.connect(`mongodb://${username}:${password}@${dbBaseUrl}`, {
     useNewUrlParser: true
@@ -14,6 +14,9 @@ const setupDatabase = () => {
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function () {
     console.log('database connected');
+    if (onConnected) {
+      onConnected();
+    }
   });
 };
 
