@@ -29,7 +29,7 @@ const setupEventPoller = () => {
           successIds.push(event._id);
         } catch (e) {
           console.error(
-            `Failed to send event ${event._id} to channel ${room._id}`
+            `Failed to send event ${event._id} to room ${room._id} on channel ${event.channel}`
           );
           break;
         }
