@@ -1,22 +1,10 @@
 const { Event } = require('./models');
 const { Channel } = require('../channels/models');
 
-const createNewEvent = async ({
-  status,
-  data,
-  channelName,
-  receivedDate,
-  postedDate
-}) => {
-  const channel = Channel.findOne({ name: channelName }); // TODO: Replace with accessToken?
-  await Event.create({
-    status,
-    data,
-    channel,
-    receivedDate,
-    postedDate
-  });
-}
+const createNewEvent = async (channelName, data) => {
+  const channel = Channel.findOne({ name: channelName });
+  await Event.create({ channel, data });
+};
 
 module.exports = {
   createNewEvent

@@ -1,7 +1,8 @@
 const { createNewEvent } = require('./service');
 
 const post = async (req, res) => {
-  const event = await createNewEvent(req.body.event);
+  const { channelName, data } = req.body.event;
+  const event = await createNewEvent(channelName, data);
   res.json(event);
 };
 
