@@ -27,10 +27,11 @@ const handleDisconnect = () => {
 const init = app => {
   _instance = io(app, {
     cors: {
-      origin: 'http://localhost:3001',
+      origin: process.env.ALLOWED_CORS_ORIGIN,
       methods: ['GET', 'POST']
     }
   });
+
   _instance.on('connection', handleConnection);
 
   return _instance;
