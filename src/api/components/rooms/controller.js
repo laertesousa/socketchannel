@@ -1,4 +1,4 @@
-const { getRooms, create } = require('./service');
+const { getRooms, create, getByName } = require('./service');
 
 const get = async (req, res) => {
   const rooms = await getRooms();
@@ -8,7 +8,11 @@ const get = async (req, res) => {
 const post = async (req, res) => {
   const { name, url, accessToken } = req.body;
   try {
-    const room = await create(name, url, accessToken);
+    let room = await getByName(name, accessToken);
+    if (!room) {
+      room = await create(name, url, accessToken);
+    }
+
     res.json(room);
   } catch (err) {
     console.error(err);
