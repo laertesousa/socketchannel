@@ -20,7 +20,7 @@ const processEvents = async () => {
     .distinct('room')
     .exec();
 
-  console.log(`${roomIds.length} with pending events.`);
+  console.log(`${roomIds.length} rooms with pending events.`);
 
   for (const roomId of roomIds) {
     const room = await Room.findById(roomId).exec();
@@ -41,7 +41,7 @@ const processEvents = async () => {
         successIds.push(event._id);
       } catch (e) {
         console.error(
-          `Failed to send event ${event._id} to room ${room._id} on channel ${event.channel}`
+          `Failed to send event ${event._id} to room ${room._id} on channel ${event.channel}. ${e}`
         );
         break;
       }
