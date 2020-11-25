@@ -6,11 +6,11 @@ const get = async (req, res) => {
   };
 
 const post = async (req, res) => {
-    const { appId, token } = req.body;
+
+    const { appId, appKey } = req.body;
 
     try{
-        //const token = jwt.sign({ clientId: clientId }, clientSecret)
-        const event = await create(appId, token);
+        const token = await create(appId, appKey);
         res.json(token)
     } catch (err){
         console.error(err);

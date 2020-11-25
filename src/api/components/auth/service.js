@@ -4,16 +4,16 @@ const jwt = require ('jsonwebtoken')
 const getAuth = async () =>
   await Authentication.find().exec()
   
-const getKeyByUserandPassword = async (appId, password) => 
+const getKeyByIdandToken = async (appId, token) => 
 await Authentication.findOne({ appId, token });
 
-const create  = async (appId, token ) => {
-    const token = jwt.sign({ clientId: appId }, password);
+const create  = async (appId, appKey ) => {
+    const token = jwt.sign({ clientId: appId }, appKey);
     await Authentication.create({ appId, token })
 };
 
 module.exports = {
-    getKeyByUserandPassword,
+  getKeyByIdandToken,
     create,
     getAuth
 }
