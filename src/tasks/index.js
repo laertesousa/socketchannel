@@ -7,7 +7,7 @@ const password = process.env.DB_PASS;
 const enable_tasks = process.env.ENABLE_TASKS;
 
 const setupTask = async () => {
-  if (!enable_tasks) {
+  if (enable_tasks !== 'true') {
     return;
   }
 
