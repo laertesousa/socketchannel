@@ -1,4 +1,5 @@
 const { validate } = require('express-validation');
+const passport = require('passport');
 
 const { roomValidation } = require('./validation');
 const controller = require('./controller');

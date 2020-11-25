@@ -1,9 +1,8 @@
 const { getRooms, create, getByName } = require('./service');
-const passport = require('passport');
 
-const get = async (req, res) => {
+const get = async (req, res) => { 
   const rooms = await getRooms();
-  passport.authenticate('bearer', { session: false }),
+
   res.json(rooms);
 };
 

@@ -1,12 +1,11 @@
-const { validate } = require('express-validation');
-
-
-const { authValidation } = require('./validation');
 const controller = require('./controller');
-const { eventValidation } = require('../events/validation');
+const { validate } = require('express-validation');
+const { authValidation } = require('./validation');
 
 const authRoutes = app => {
-    app.post('/oauth', validate(authValidation), controller.post);
+
+    app.get('/auth', controller.get);
+    app.post('/auth', validate(authValidation), controller.post);
 };
 
 module.exports = authRoutes;
