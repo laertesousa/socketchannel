@@ -5,7 +5,6 @@ const username = process.env.DB_USER;
 const password = process.env.DB_PASS;
 
 const setupDatabase = onConnected => {
-  console.log(`mongodb://${username}:${password}@${dbBaseUrl}`);
   mongoose.connect(`mongodb://${username}:${password}@${dbBaseUrl}`, {
     useNewUrlParser: true
   });
